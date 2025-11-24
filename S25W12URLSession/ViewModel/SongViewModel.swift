@@ -15,6 +15,8 @@ final class SongViewModel {
         _songs
     }
     
+    var path = NavigationPath()
+    
     func loadSongs() async {
         _songs = try! await repository.fetchSongs()
     }
