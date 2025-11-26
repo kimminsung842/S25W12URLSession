@@ -26,7 +26,7 @@ struct SongView: View {
             .navigationDestination(for: Song.self) { song in
                 SongDetailView(song: song)
             }
-            .navigationTitle("노래")
+            .navigationTitle("내가 좋아하는 노래")
             .task {
                 await viewModel.loadSongs()
             }
@@ -53,6 +53,11 @@ struct SongListView: View {
                     }
                 }
             }
+        }
+        .task {
+            await viewModel.addSong(
+                Song(id: UUID(), title: "test", singer: "singer", rating: 1, lyrics: "lyrics")
+            )
         }
     }
 }

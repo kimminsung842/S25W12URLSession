@@ -20,4 +20,14 @@ final class SongViewModel {
     func loadSongs() async {
         _songs = try! await repository.fetchSongs()
     }
+    
+    func addSong(_ song: Song) async {
+        do {
+            try await repository.saveSong(song)
+            _songs.append(song)
+        }
+        catch {
+            debugPrint("에러 발생: \(error)")
+        }
+    }
 }
